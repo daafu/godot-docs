@@ -18,7 +18,7 @@ they can have only one single node as the tree root.
 
 .. image:: /img/tree.png
 
-In Godot, a scene can be created and saved it to disk. As many scenes
+In Godot, a scene can be created and saved to disk. As many scenes
 can be created and saved as desired.
 
 .. image:: /img/instancingpre.png
