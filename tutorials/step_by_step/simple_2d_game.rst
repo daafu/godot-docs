@@ -75,35 +75,33 @@ Node2D:
     func _ready():
         pass
 
-In the constructor, two things will be done. The first is to enable
-processing, and the second to store some useful values. Such values are
-the dimensions of the screen and the pad:
+In the ``_ready`` call two things will be done. The first is to enable processing,
+and the second is to store some useful values, such as the dimensions of the
+screen and the pads. We can get these values inside the ``_ready`` function, or
+we can use the convenient ``onready`` keyword:
 
 ::
 
 
     extends Node2D
 
-    var screen_size
-    var pad_size
-
+    onready var screen_size = get_viewport_rect().size
+    onready var pad_size = get_node("left").get_texture().get_size()
+    
     func _ready():
-        screen_size = get_viewport_rect().size
-        pad_size = get_node("left").get_texture().get_size()
         set_process(true)
 
 Then, some variables used for in-game will be added:
 
 ::
 
-    #speed of the ball (in pixels/second0
-
+    #speed of the ball (in pixels/second)
     var ball_speed = 80
+    
     #direction of the ball (normal vector)
-
     var direction = Vector2(-1,0)
+    
     #constant for pad speed (also in pixels/second)
-
     const PAD_SPEED = 150
 
 Finally, the process function:
@@ -129,7 +127,7 @@ Since the ball pos was obtained, integrating it should be simple:
 
         ball_pos+=direction*ball_speed*delta
 
-Then, now that the ball has a new position, it should be tested against
+Now that the ball has a new position, it should be tested against
 everything. First, the floor and the roof:
 
 ::
